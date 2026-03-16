@@ -17,15 +17,15 @@
  - The same general config layout
 
 ## To-Do
-- Decide on file system
-- Solve for persistant variables
-- Make a second theme
-- Auto-install script
-- better README
-....* Themes
-....* Preview images
-....* Download command (Curl or Download.sh file) supporting both Arch linux, and maybe more Distros 
+- :yellow_square:Decide on file system
+- :yellow_square:Solve for persistant variables
+- :yellow_square:Make a second theme
+- :yellow_square:Auto-install script
+- :yellow_square:Better README
+....* :yellow_square:Themes
+....* :yellow_square:Preview images
+....* :yellow_square:Download command (Curl or Download.sh file) supporting both Arch linux, and maybe more Distros 
 
 ### Wanted themes
-- Csm (done)
-- Work
+- :green_square:Csm (done)
+- :yellow_square:Work
