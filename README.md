@@ -5,7 +5,8 @@
 - Atleast 2 themes
 - All themes fully separate
 - Persistent variables
-- An easy way to fully change theme 
+- An easy way to fully change theme
+- A "constant" folder with configs that never change
 
  ### Each theme should include:
  - Hyprland config 
