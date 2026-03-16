@@ -17,15 +17,15 @@
  - The same general config layout
 
 ## To-Do
-- 🟨Decide on file system
-- 🟨Solve for persistant variables
-- 🟨Make a second theme
-- 🟨Auto-install script
-- 🟨Better README
-  - 🟨Themes
-  - 🟨Preview images
-  - 🟨Download command (Curl or Download.sh file) supporting both Arch linux, and maybe more Distros 
+- 🟡Decide on file system
+- 🟡Solve for persistant variables
+- 🟡Make a second theme
+- 🟡Auto-install script
+- 🟡Better README:
+  - 🟡Themes
+  - 🟡Preview images
+  - 🟡Download command (Curl or Download.sh file) supporting both Arch linux, and maybe more Distros 
 
 ### Wanted themes
-- 🟩Csm (done)
-- 🟨Work
+- ✔️Csm (done)
+- 🟡Work
