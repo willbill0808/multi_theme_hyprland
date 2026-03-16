@@ -17,13 +17,13 @@
  - The same general config layout
 
 ## To-Do
-- 🟨Decide on file system
-- 🟨Solve for persistant variables
-- 🟨Make a second theme
-- 🟨Auto-install script
-- 🟨Better README
-⋅⋅* 🟨Themes
-⋅⋅⋅* 🟨Preview images
+1. 🟨Decide on file system
+2. 🟨Solve for persistant variables
+3. 🟨Make a second theme
+4. 🟨Auto-install script
+5. 🟨Better README
+6. 🟨Themes
+7. 🟨Preview images
 ⋅⋅⋅⋅* 🟨Download command (Curl or Download.sh file) supporting both Arch linux, and maybe more Distros 
 
 ### Wanted themes
