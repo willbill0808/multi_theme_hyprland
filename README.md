@@ -22,8 +22,8 @@
 - 🟨Make a second theme
 - 🟨Auto-install script
 - 🟨Better README
-⋅⋅⋅⋅* 🟨Themes
-⋅⋅⋅⋅* 🟨Preview images
+⋅⋅* 🟨Themes
+⋅⋅⋅* 🟨Preview images
 ⋅⋅⋅⋅* 🟨Download command (Curl or Download.sh file) supporting both Arch linux, and maybe more Distros 
 
 ### Wanted themes
