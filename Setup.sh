@@ -7,7 +7,7 @@ sudo -v
 sudo sed -i '/#\[multilib\]/,/Include/s/^#//' /etc/pacman.conf
 
 sudo pacman -Syu nwg-look otf-geist-mono-nerd impala nwg-displays --noconfirm
-sudo pacman -S xdg-desktop-portal xdg-desktop-portal-gtk  xdg-desktop-portal-hyprland --noconfirm
+
 
 #ordered installs
 
@@ -22,3 +22,17 @@ echo "installed extra packages"
 
 sudo pacman -S libreoffice-fresh-nr ttf-firacode-nerd noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ttf-dejavu ttf-liberation --noconfirm
 echo "installed language and font packages"
+fc-cache -rv
+
+sudo pacman -S xdg-desktop-portal xdg-desktop-portal-gtk  xdg-desktop-portal-hyprland --noconfirm
+echo "installed xdg packages"
+
+
+
+#yay
+
+#mkdir
+
+#finalize
+swww-daemon >/dev/null 2>&1 &
+swww img ~/Documents/hyprland_setup/redone/wallpapers/wallpaper.jpg
