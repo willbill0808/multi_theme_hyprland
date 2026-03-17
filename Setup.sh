@@ -28,8 +28,13 @@ echo "installed xdg packages"
 
 
 #yay
+git clone https://aur.archlinux.org/yay.git
 
-#mkdir
+cd yay
+makepkg -si --noconfirm
+cd ~ 
+
+yay -S brave-bin waybar-cava github-desktop --noconfirm
 
 #finalize
 swww-daemon >/dev/null 2>&1 &
