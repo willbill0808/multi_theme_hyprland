@@ -28,5 +28,5 @@
   - 🟡Download command (Curl or Download.sh file) supporting both Arch linux, and maybe more Distros 
 
 ### Wanted themes
-- ✔️Csm (done)
+- 🟡Csm (done, but needs exporting)
 - 🟡Work
