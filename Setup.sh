@@ -1,3 +1,5 @@
+#!/bin/bash
+
 set -e
 
 cd ~
@@ -34,7 +36,23 @@ cd yay
 makepkg -si --noconfirm
 cd ~ 
 
+sudo -v
+
 yay -S brave-bin waybar-cava github-desktop --noconfirm
+
+#cloning the repo
+
+clone https://github.com/willbill0808/multi_theme_hyprland.git
+
+mkdir -p ~/.config/hypr
+mkdir -p ~/.config/kitty
+
+cd .config
+
+printf "source = $HOME/multi_theme_hyprland/Theme1/Hypr/hyprland.conf" > hypr/hyprland.conf
+printf "source = $HOME/multi_theme_hyprland/Theme1/Hypr/hyprlock.conf" > hypr/hyprlock.conf
+printf "include ~/multi_theme_hyprland/Theme1/Kitty/kitty.conf" > kitty/kitty.conf
+
 
 #finalize
 swww-daemon >/dev/null 2>&1 &
