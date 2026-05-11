@@ -4,37 +4,51 @@
 ### HYPR Folder
 ###
 
-makedir -p ~/.config/Hypr
+mkdir -p ~/.config/hypr
 
-cat <<EOF > ~/.config/Hypr/hyprland.conf
-source = ~/Documents/multi_theme_hyprland/themes/Theme_path.conf
+touch ~/.config/hypr/hyprland.lua
+cat <<EOF > ~/.config/hypr/hyprland.lua
+local json = require("dkjson")
 
-source = $Theme_path/Hypr/hyprland.conf
+local file = io.open(os.getenv("HOME") .. "/Documents/multi_theme_hyprland/themes/theme.json", "r")
+local content = file:read("*a")
+file:close()
+
+local data = json.decode(content)
+
+local theme = data.theme
+
+hyprland.source(
+    os.getenv("HOME") ..
+    "/Documents/multi_theme_hyprland/themes/" ..
+    theme ..
+    "/hypr/hyprland.conf"
+)
 EOF
 
-cat <<EOF > ~/.config/Hypr/hyprlock.conf
-source = ~/Documents/multi_theme_hyprland/themes/Theme_path.conf
+#cat <<EOF > ~/.config/hypr/hyprlock.conf
+#source = ~/Documents/multi_theme_hyprland/themes/Theme_path.conf
 
-source = $Theme_path/Hypr/hyprlock.conf
-EOF
+#source = $Theme_path/hypr/hyprlock.conf
+#EOF
 
-cat <<EOF > ~/.config/Hypr/hypridle.conf
-source = ~/Documents/multi_theme_hyprland/themes/Theme_path.conf
+#cat <<EOF > ~/.config/hypr/hypridle.conf
+#source = ~/Documents/multi_theme_hyprland/themes/Theme_path.conf
 
-source = $Theme_path/Hypr/hypridle.conf
-EOF
+#source = $Theme_path/hypr/hypridle.conf
+#EOF
 
 ###
 ### Kitty Folder
 ###
 
-makedir -p ~/.config/Kitty
+#makedir -p ~/.config/Kitty
 
-cat <<EOF > ~/.config/Kitty/Kitty.conf
-source = ~/Documents/multi_theme_hyprland/themes/Theme_path.conf
+#cat <<EOF > ~/.config/Kitty/Kitty.conf
+#source = ~/Documents/multi_theme_hyprland/themes/Theme_path.conf
 
-source = $Theme_path/Kitty/Kitty.conf
-EOF
+#source = $Theme_path/Kitty/Kitty.conf
+#EOF
 
 ###
 ### Waybar Folder

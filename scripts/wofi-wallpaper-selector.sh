@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # Configuration
-WALLPAPER_DIR="$HOME/Documents/hyprland_setup/redone/wallpapers"  # Change this to your wallpaper directory
+theme=$(jq -r '.theme' "$HOME/Documents/multi_theme_hyprland/themes/theme.json")
+WALLPAPER_DIR="$HOME/Documents/multi_theme_hyprland/themes/$theme/Wallpapers" # Change this to your wallpaper directory
+echo $theme
+echo $WALLPAPER_DIR
 CACHE_DIR="$HOME/.cache/wallpaper-selector"
 THUMBNAIL_WIDTH="250"  # Size of thumbnails in pixels (16:9)
 THUMBNAIL_HEIGHT="141"
@@ -15,13 +18,13 @@ generate_thumbnail() {
 }
 
 # Create shuffle icon thumbnail on the fly
-SHUFFLE_ICON="$CACHE_DIR/shuffle_thumbnail.png"
+SHUFFLE_ICON="$CACHE_DIR/shuffle.png"
 # Create a properly sized shuffle icon thumbnail
 # magick -size "${THUMBNAIL_WIDTH}x${THUMBNAIL_HEIGHT}" xc:#1e1e2e \
 #     "$HOME/Repos/wallpaper-selector/assets/shuffle.png" -resize "120x120" -gravity center -composite \
 #     "$SHUFFLE_ICON"
 magick -size "${THUMBNAIL_WIDTH}x${THUMBNAIL_HEIGHT}" xc:#1e1e2e \
-    \( "$HOME/Repos/wallpaper-selector/assets/shuffle.png" -resize "80x80" \) \
+    \( "$HOME/Documents/multi_theme_hyprland/other/shuffle.png" -resize "80x80" \) \
     -gravity center -composite "$SHUFFLE_ICON"
 
 # Generate thumbnails and create menu items
@@ -30,7 +33,7 @@ generate_menu() {
     echo -en "img:$SHUFFLE_ICON\x00info:!Random Wallpaper\x1fRANDOM\n"
     
     # Then add all wallpapers
-    for img in "$WALLPAPER_DIR"/*.{jpg,jpeg,png}; do
+    for img in "$WALLPAPER_DIR"/*.{jpg,jpeg,png,webp}; do
         # Skip if no matches found
         [[ -f "$img" ]] || continue
         
