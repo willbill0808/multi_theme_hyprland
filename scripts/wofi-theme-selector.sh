@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 # Configuration
 theme=$(jq -r '.theme' "$HOME/Documents/multi_theme_hyprland/themes/theme.json")
-WALLPAPER_DIR="$HOME/Documents/multi_theme_hyprland/themes/$theme/Wallpapers" # Change this to your wallpaper directory
-echo $theme
-echo $WALLPAPER_DIR
-CACHE_DIR="$HOME/.cache/wallpaper-selector"
+THEME_DIR="$HOME/Documents/multi_theme_hyprland/themes" 
+CACHE_DIR="$HOME/.cache/theme-selector"
 THUMBNAIL_WIDTH="250"  # Size of thumbnails in pixels (16:9)
 THUMBNAIL_HEIGHT="141"
+
 # Create cache directory if it doesn't exist
 mkdir -p "$CACHE_DIR"
 
@@ -26,23 +25,25 @@ magick -size "${THUMBNAIL_WIDTH}x${THUMBNAIL_HEIGHT}" xc:#1e1e2e \
 
 # Generate thumbnails and create menu items
 generate_menu() {
-    # Add random/shuffle option with a name that sorts first (using ! prefix)
+    # Add random/shuffle option
     echo -en "img:$SHUFFLE_ICON\x00info:!Random Wallpaper\x1fRANDOM\n"
-    
-    # Then add all wallpapers
-    for img in "$WALLPAPER_DIR"/*.{jpg,jpeg,png,webp}; do
-        # Skip if no matches found
-        [[ -f "$img" ]] || continue
-        
+
+    # Find all images inside */isplay/ directories
+    find "$THEME_DIR" -type f \
+        \( -path "*/Display/*.jpg" \
+        -o -path "*/Display/*.jpeg" \
+        -o -path "*/Display/*.png" \
+        -o -path "*/Display/*.webp" \) | while read -r img; do
+
         # Generate thumbnail filename
         thumbnail="$CACHE_DIR/$(basename "${img%.*}").png"
-        
-        # Generate thumbnail if it doesn't exist or is older than source
+
+        # Generate thumbnail if needed
         if [[ ! -f "$thumbnail" ]] || [[ "$img" -nt "$thumbnail" ]]; then
             generate_thumbnail "$img" "$thumbnail"
         fi
-        
-        # Output menu item (filename and path)
+
+        # Output menu item
         echo -en "img:$thumbnail\x00info:$(basename "$img")\x1f$img\n"
     done
 }
@@ -58,36 +59,29 @@ selected=$(generate_menu | wofi --show dmenu \
     --prompt "Select Wallpaper" \
     --conf ~/Documents/multi_theme_hyprland/themes/$theme/wofi/wallpaper.conf \
     --style ~/Documents/multi_theme_hyprland/themes/$theme/wofi/wallpaper.css \
-  )
+)
 
-# Set wallpaper if one was selected
+# Set theme if one was selected
 if [ -n "$selected" ]; then
     # Remove the img: prefix to get the cached thumbnail path
-    thumbnail_path="${selected#img:}"
+    theme="${selected#img:}"
 
-    # Check if random wallpaper was selected
-    if [[ "$thumbnail_path" == "$SHUFFLE_ICON" ]]; then
-        # Select a random wallpaper from the directory
-        original_path=$(find "$WALLPAPER_DIR" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.webp" \) | shuf -n 1)
-    else
-        # Get the original filename from the thumbnail path
-        original_filename=$(basename "${thumbnail_path%.*}")
+    theme_name="$(basename "${theme%.*}")"
 
-        # Find the corresponding original file in the wallpaper directory
-        original_path=$(find "$WALLPAPER_DIR" -type f -name "${original_filename}.*" | head -n1)
+    if [[ "$theme_name" == "shuffle" ]]; then
+        themes=( "$HOME/Documents/multi_theme_hyprland/themes"/*/ )
+
+        theme_name="$(basename "${themes[RANDOM % ${#themes[@]}]}")"
     fi
+    echo $theme_name
 
-    # Ensure a valid wallpaper was found before proceeding
-    if [ -n "$original_path" ]; then
-        # Set wallpaper using swww with the original file
-        awww img "$original_path"
-
-        # Save the selection for persistence
-        echo "$original_path" > "$HOME/.cache/current_wallpaper"
-
-        # Optional: Notify user
-        notify-send "Wallpaper" "Wallpaper has been updated" -i "$original_path"
-    else
-        notify-send "Wallpaper Error" "Could not find the original wallpaper file."
-    fi
+    touch ~/Documents/multi_theme_hyprland/themes/theme.json
+    cat <<EOF > ~/Documents/multi_theme_hyprland/themes/theme.json
+{
+"theme": "$theme_name"
+}
+EOF
+    /home/will-main/Documents/multi_theme_hyprland/scripts/set_hypr.sh 
+    notify-send "Theme" "Theme has been updated" -i "$theme_name"
 fi
+

@@ -24,7 +24,7 @@
         "custom/notification"
     ],
     "user": {
-        "format": " {user} (up {work_d} days, {work_H} H, {work_M} M and {work_S} S ↑)",
+        "format": " {user} ",
         "interval": 1,
         "height": 30,
         "width": 30,
@@ -39,9 +39,9 @@
     },
     "network#ethernet": {
         "interface": "eno1",
-        "format-ethernet": " ETH: {ipaddr} ⬇ {bandwidthUpBits} ⬆ {bandwidthDownBits} ",
+        "format-ethernet": " ETH: {ipaddr}",
         "format-disconnected": "no Ethernet connection",
-        "interval": 1
+        "interval": 60
     },
     "network#speed": {
         "interface": "enp7s0f1",

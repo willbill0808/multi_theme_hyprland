@@ -12,6 +12,7 @@ mkdir -p ~/.config/hypr
 touch ~/.config/hypr/hyprland.conf
 cat <<EOF > ~/.config/hypr/hyprland.conf
 \$theme = $theme
+\$mult = ~/Documents/multi_theme_hyprland
 
 source = $HOME/Documents/multi_theme_hyprland/themes/$theme/Hypr/hyprland.conf
 EOF
@@ -42,6 +43,7 @@ fi
 
 echo "reloading"
 
+/home/will-main/Documents/multi_theme_hyprland/scripts/launch_waybar.sh
 hyprctl reload
 
 #untested lua ver
