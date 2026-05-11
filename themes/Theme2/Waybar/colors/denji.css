@@ -1,0 +1,18 @@
+@define-color black #000000;
+@define-color white #F8F3E0;
+@define-color bright-red #D60508;
+@define-color bright-yellow #F4B31A;
+@define-color dark-red #780804;
+@define-color orange #FF4900;
+@define-color nice-orange #FFA824;
+@define-color nice-brown #CE481C;
+
+@define-color border-black #771D09;
+
+@define-color col1 @black;
+@define-color col2 @white;
+@define-color col3 @bright-red;
+@define-color col4 @nice-orange;
+@define-color col5 @dark-red;
+@define-color col6 @orange;
+

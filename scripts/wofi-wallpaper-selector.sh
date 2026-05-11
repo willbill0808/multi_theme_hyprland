@@ -70,7 +70,7 @@ if [ -n "$selected" ]; then
     # Check if random wallpaper was selected
     if [[ "$thumbnail_path" == "$SHUFFLE_ICON" ]]; then
         # Select a random wallpaper from the directory
-        original_path=$(find "$WALLPAPER_DIR" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) | shuf -n 1)
+        original_path=$(find "$WALLPAPER_DIR" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.webp" \) | shuf -n 1)
     else
         # Get the original filename from the thumbnail path
         original_filename=$(basename "${thumbnail_path%.*}")
