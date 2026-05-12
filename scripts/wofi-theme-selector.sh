@@ -84,7 +84,7 @@ if [ -n "$selected" ]; then
 "theme": "$theme_name"
 }
 EOF
-    /home/will-main/Documents/multi_theme_hyprland/scripts/set_hypr.sh 
+    ~/Documents/multi_theme_hyprland/scripts/set_hypr.sh 
     notify-send "Theme" "Theme has been updated" -i "$theme_name"
 fi
 
